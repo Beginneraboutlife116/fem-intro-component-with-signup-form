@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { InputType } from "./input"
+
 const Input = ({ type, placeholder = "", id = "", className = "", name = "" }: InputType) => {
   const [value, setValue] = useState("")
 
