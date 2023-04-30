@@ -1,7 +1,7 @@
 import Head from "next/head"
-import Link from "next/link"
+import LoginPage from "../components/pages/login"
 
-export default function Home() {
+export default function Login() {
   return (
     <div>
       <Head>
@@ -10,10 +10,7 @@ export default function Home() {
         <link rel="icon" href="/favicon-32x32.png" />
       </Head>
 
-      <main>
-        {/* How to make the default page is "login" page? */}
-        <Link href="/login">Login</Link>
-      </main>
+      <LoginPage />
     </div>
   )
 }

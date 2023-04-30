@@ -1,0 +1,13 @@
+@use "/styles/variables" as *;
+
+.login-page {
+  min-height: 100dvh;
+  background-image: url("../../../public/images/bg-intro-mobile.png");
+  background-color: map-get($map: $colors, $key: primary-red);
+}
+
+@supports (min-height: 100dvh) {
+  .login-page {
+    min-height: 100vh;
+  }
+}
