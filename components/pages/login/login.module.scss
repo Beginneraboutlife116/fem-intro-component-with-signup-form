@@ -17,34 +17,22 @@
     display: grid;
     gap: 1.25rem;
 
-    & input {
-      padding-inline: 1.5rem;
-      padding-block: 1.25rem;
-      border-radius: 0.25rem;
-      border: 1px solid map-get($map: $colors, $key: neutral-700);
-      font-weight: $fw-600;
-
-      &::placeholder {
-        color: rgba(map-get($map: $colors, $key: neutral-400), 0.65);
-      }
-
-      &:where(:focus-visible) {
-        outline-color: map-get($map: $colors, $key: neutral-400);
-      }
-    }
-
     & button {
       background-color: map-get($map: $colors, $key: primary-green);
       color: inherit;
       padding-block: 1.5rem;
       width: 100%;
       border-radius: 0.25rem;
-      box-shadow: 0 0.25rem 0 0 rgba(#65AC87, 1);
+      box-shadow: 0 0.25rem 0 0 rgba(#65ac87, 1);
       font-weight: $fw-500;
+
+      &:where(:focus, :focus-visible, :focus-within) {
+        outline: 1px solid rgba(#65ac87, 1);
+      }
     }
 
     & p {
-      font-size: .75rem;
+      font-size: 0.75rem;
       color: map-get($map: $colors, $key: neutral-700);
     }
 
@@ -52,6 +40,33 @@
       font-weight: $fw-700;
       color: map-get($map: $colors, $key: primary-red);
     }
+  }
+
+  &__input {
+    padding-inline: 1.5rem;
+    padding-block: 1.25rem;
+    border-radius: 0.25rem;
+    outline: 1px solid map-get($map: $colors, $key: neutral-700);
+    font-weight: $fw-600;
+    color: map-get($map: $colors, $key: neutral-400);
+
+    &::placeholder {
+      color: rgba(map-get($map: $colors, $key: neutral-400), 0.65);
+    }
+
+    &:where(:focus-visible, :focus, :focus-within) {
+      outline: 2px solid map-get($map: $colors, $key: accent);
+      border: none;
+    }
+  }
+}
+
+.error {
+  color: map-get($map: $colors, $key: primary-red);
+  outline-color: map-get($map: $colors, $key: primary-red);
+
+  &::placeholder {
+    color: map-get($map: $colors, $key: primary-red);
   }
 }
 

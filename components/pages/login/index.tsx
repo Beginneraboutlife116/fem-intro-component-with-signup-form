@@ -1,21 +1,22 @@
 import { useState, FormEventHandler, ChangeEventHandler } from "react"
 import styles from "./login.module.scss"
+import Input from "../../input"
 
 type formData = {
-  firstName: string
-  lastName: string
-  email: string
-  password: string
+  firstName: string | undefined
+  lastName: string | undefined
+  email: string | undefined
+  password: string | undefined
 }
 
 const initialFormData: formData = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: ""
+  firstName: undefined,
+  lastName: undefined,
+  email: undefined,
+  password: undefined
 }
 
-export default function LoginPage() {
+const LoginPage = () => {
   const [formData, setFormData] = useState(initialFormData)
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -50,47 +51,56 @@ export default function LoginPage() {
             onSubmit={handleSubmit}
             className={`radius shadow ${styles["login-page__form"]}`}>
             <label>
-              <input
+              <Input
                 id="firstName"
                 name="firstName"
-                value={formData.firstName}
-                type="text"
-                onChange={handleChange}
+                handleChange={handleChange}
                 placeholder="First Name"
-                required
+                value={formData.firstName}
+                className={`${styles["login-page__input"]}`}
+                isRequired={true}
+                errorStyle={styles.error}
+                rule={(value: string) => value !== undefined && value === ""}
               />
             </label>
             <label>
-              <input
+              <Input
                 id="lastName"
                 name="lastName"
-                value={formData.lastName}
-                type="text"
-                onChange={handleChange}
+                handleChange={handleChange}
                 placeholder="Last Name"
-                required
+                value={formData.lastName}
+                className={`${styles["login-page__input"]}`}
+                isRequired={true}
+                errorStyle={styles.error}
+                rule={(value: string) => value !== undefined && value === ""}
               />
             </label>
             <label>
-              <input
+              <Input
                 id="email"
                 name="email"
-                value={formData.email}
-                type="email"
-                onChange={handleChange}
+                handleChange={handleChange}
                 placeholder="Email Address"
-                required
+                value={formData.email}
+                className={`${styles["login-page__input"]}`}
+                isRequired={true}
+                errorStyle={styles.error}
+                // change the examining method
+                rule={(value: string) => value !== undefined && value === ""}
               />
             </label>
             <label>
-              <input
+              <Input
                 id="password"
                 name="password"
-                value={formData.password}
-                type="password"
-                onChange={handleChange}
+                handleChange={handleChange}
                 placeholder="Password"
-                required
+                value={formData.password}
+                className={`${styles["login-page__input"]}`}
+                isRequired={true}
+                errorStyle={styles.error}
+                rule={(value: string) => value !== undefined && value === ""}
               />
             </label>
             <button type="submit">CLAIM YOUR FREE TRIAL</button>
@@ -104,3 +114,5 @@ export default function LoginPage() {
     </div>
   )
 }
+
+export default LoginPage

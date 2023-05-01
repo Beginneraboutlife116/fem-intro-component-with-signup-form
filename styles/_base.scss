@@ -10,6 +10,7 @@ body {
 input {
   width: 100%;
   line-height: 1;
+  border: none;
 }
 
 em {
@@ -28,5 +29,6 @@ a {
 button {
   cursor: pointer;
   border: none;
+  outline: none;
   line-height: 1;
 }

@@ -1,20 +1,33 @@
 import React, { useState } from "react"
 import { InputType } from "./input"
 
-const Input = ({ type, placeholder = "", id = "", className = "", name = "" }: InputType) => {
-  const [value, setValue] = useState("")
+const Input = ({
+  type = "text",
+  placeholder = "",
+  id = "",
+  className = "",
+  name = "",
+  handleChange,
+  value,
+  isRequired = false,
+  errorStyle = "",
+  rule
+}: InputType) => {
+  let error
+  if (rule) {
+    error = rule(value)
+  }
 
   return (
     <input
       type={type}
       placeholder={placeholder}
       value={value}
-      onChange={(event) => {
-        setValue(event.target.value)
-      }}
+      onChange={handleChange}
       id={id}
-      className={className}
+      className={(`${className} ${error ? errorStyle : ""}`).trim()}
       name={name}
+      required={isRequired}
     />
   )
 }
