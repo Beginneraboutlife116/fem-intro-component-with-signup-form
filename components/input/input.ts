@@ -1,4 +1,4 @@
-import { ChangeEventHandler, Dispatch, SetStateAction } from "react"
+import { ChangeEventHandler } from "react"
 
 type InputType = {
   type?: "text" | "email" | "number" | "password"
@@ -7,9 +7,7 @@ type InputType = {
   className?: string
   name?: string
   value: string | number | undefined
-  handleChange:
-    | ChangeEventHandler<HTMLInputElement>
-    | Dispatch<SetStateAction<string>>
+  handleChange: ChangeEventHandler<HTMLInputElement>
   isRequired?: boolean
   errorStyle?: string
   rule?: Function | null
