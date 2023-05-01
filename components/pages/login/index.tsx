@@ -30,23 +30,25 @@ export default function LoginPage() {
     e.preventDefault()
   }
   return (
-    <div className={styles["login-page"]}>
-      <section>
-        <h1>Learn to code by watching others</h1>
-        <p>
+    <div className={`pi-4 pbs-12 pbe-6 ${styles["login-page"]}`}>
+      <section className="mbe-6">
+        <h1 className="mbe-3 pi-2">Learn to code by watching others</h1>
+        <p className="line-height">
           See how experienced developers solve problems in real-time Watching
           scripted tutorials is great, but understanding how developers think is
           invaluable.
         </p>
       </section>
       <main>
-        <div>
+        <div className={`radius shadow mbe-3 ${styles["login-page__banner"]}`}>
           <p>
             <em>Try it free 7 days</em> then $20/mo. thereafter
           </p>
         </div>
         <div>
-          <form onSubmit={handleSubmit}>
+          <form
+            onSubmit={handleSubmit}
+            className={`radius shadow ${styles["login-page__form"]}`}>
             <label>
               <input
                 id="firstName"
@@ -76,7 +78,7 @@ export default function LoginPage() {
                 value={formData.email}
                 type="email"
                 onChange={handleChange}
-                placeholder="Email"
+                placeholder="Email Address"
                 required
               />
             </label>
@@ -92,11 +94,11 @@ export default function LoginPage() {
               />
             </label>
             <button type="submit">CLAIM YOUR FREE TRIAL</button>
+            <p>
+              By clicking the button, you are agreeing to our{" "}
+              <a href="#">Terms and Services</a>
+            </p>
           </form>
-          <p>
-            By clicking the button, you are agreeing to our{" "}
-            <em>Terms and Services</em>
-          </p>
         </div>
       </main>
     </div>

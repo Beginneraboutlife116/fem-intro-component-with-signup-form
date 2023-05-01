@@ -1,4 +1,32 @@
+@use "./variables" as *;
+
 body {
+  color: white;
+  text-align: center;
+  line-height: 1.5;
   font-family: "Poppins", sans-serif;
-  
+}
+
+input {
+  width: 100%;
+  line-height: 1;
+}
+
+em {
+  font-style: normal;
+  font-weight: $fw-600;
+}
+
+a {
+  text-decoration: none;
+
+  &:where(:visited, :active) {
+    color: currentColor;
+  }
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  line-height: 1;
 }

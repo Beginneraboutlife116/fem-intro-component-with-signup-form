@@ -6,9 +6,16 @@ $colors: (
   neutral-700: hsl(246, 25%, 77%)
 );
 
-$fz: 1rem;
-
 $fw-400: 400;
 $fw-500: 500;
 $fw-600: 600;
 $fw-700: 700;
+
+$direction: (
+  b: "block",
+  bs: "block-start",
+  be: "block-end",
+  i: "inline",
+  is: "inline-start",
+  ie: "inline-end"
+);
