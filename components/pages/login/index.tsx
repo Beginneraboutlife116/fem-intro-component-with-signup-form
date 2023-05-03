@@ -1,4 +1,5 @@
 import { useState, FormEventHandler, ChangeEventHandler } from "react"
+import { determineEmptyString, determineValidateEmail } from '../../utilities'
 import styles from "./login.module.scss"
 import FormItem from "../../formItem"
 
@@ -59,7 +60,7 @@ const LoginPage = () => {
               inputClass={`${styles["login-page__input"]}`}
               isRequired={true}
               errorStyle={styles.error}
-              rule={(value: string) => value !== undefined && value === ""}
+              rule={determineEmptyString}
               errorMessage="First Name cannot be empty"
               errorMessageStyle={styles.error__message}
             />
@@ -72,7 +73,7 @@ const LoginPage = () => {
               inputClass={`${styles["login-page__input"]}`}
               isRequired={true}
               errorStyle={styles.error}
-              rule={(value: string) => value !== undefined && value === ""}
+              rule={determineEmptyString}
               errorMessage="Last Name cannot be empty"
               errorMessageStyle={styles.error__message}
             />
@@ -85,7 +86,7 @@ const LoginPage = () => {
               inputClass={`${styles["login-page__input"]}`}
               isRequired={true}
               errorStyle={styles.error}
-              rule={(value: string) => value !== undefined && value === ""}
+              rule={determineValidateEmail}
               errorMessage="Looks like this is not an email"
               errorMessageStyle={styles.error__message}
             />
@@ -98,7 +99,7 @@ const LoginPage = () => {
               inputClass={`${styles["login-page__input"]}`}
               isRequired={true}
               errorStyle={styles.error}
-              rule={(value: string) => value !== undefined && value === ""}
+              rule={determineEmptyString}
               errorMessage="Password cannot be empty"
               errorMessageStyle={styles.error__message}
             />

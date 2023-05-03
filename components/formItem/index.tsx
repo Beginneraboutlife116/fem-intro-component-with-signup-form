@@ -1,5 +1,7 @@
 import React from "react"
+import Image from "next/image"
 import { FormItem } from "./formItem"
+import styles from "./formItem.module.scss"
 
 const FormItem = ({
   type = "text",
@@ -45,7 +47,16 @@ const FormItem = ({
         name={name}
         required={isRequired}
       />
-      {error ? errorMessageElement : null}
+      {error && errorMessageElement}
+      {error && (
+        <Image
+          className={styles.icon}
+          src="/images/icon-error.svg"
+          alt=""
+          width={24}
+          height={24}
+        />
+      )}
     </label>
   )
 }
