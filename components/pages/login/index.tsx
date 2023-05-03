@@ -1,6 +1,6 @@
 import { useState, FormEventHandler, ChangeEventHandler } from "react"
 import styles from "./login.module.scss"
-import Input from "../../input"
+import FormItem from "../../formItem"
 
 type formData = {
   firstName: string | undefined
@@ -50,61 +50,60 @@ const LoginPage = () => {
           <form
             onSubmit={handleSubmit}
             className={`radius shadow ${styles["login-page__form"]}`}>
-            <label>
-              <Input
-                id="firstName"
-                name="firstName"
-                handleChange={handleChange}
-                placeholder="First Name"
-                value={formData.firstName}
-                className={`${styles["login-page__input"]}`}
-                isRequired={true}
-                errorStyle={styles.error}
-                rule={(value: string) => value !== undefined && value === ""}
-              />
-            </label>
-            <label>
-              <Input
-                id="lastName"
-                name="lastName"
-                handleChange={handleChange}
-                placeholder="Last Name"
-                value={formData.lastName}
-                className={`${styles["login-page__input"]}`}
-                isRequired={true}
-                errorStyle={styles.error}
-                rule={(value: string) => value !== undefined && value === ""}
-              />
-            </label>
-            <label>
-              <Input
-                id="email"
-                name="email"
-                handleChange={handleChange}
-                placeholder="Email Address"
-                value={formData.email}
-                className={`${styles["login-page__input"]}`}
-                isRequired={true}
-                errorStyle={styles.error}
-                // change the examining method
-                rule={(value: string) => value !== undefined && value === ""}
-              />
-            </label>
-            <label>
-              <Input
-                id="password"
-                name="password"
-                handleChange={handleChange}
-                placeholder="Password"
-                value={formData.password}
-                className={`${styles["login-page__input"]}`}
-                isRequired={true}
-                errorStyle={styles.error}
-                rule={(value: string) => value !== undefined && value === ""}
-              />
-            </label>
+            <FormItem
+              id="firstName"
+              name="firstName"
+              handleChange={handleChange}
+              placeholder="First Name"
+              value={formData.firstName}
+              inputClass={`${styles["login-page__input"]}`}
+              isRequired={true}
+              errorStyle={styles.error}
+              rule={(value: string) => value !== undefined && value === ""}
+              errorMessage="First Name cannot be empty"
+              errorMessageStyle={styles.error__message}
+            />
+            <FormItem
+              id="lastName"
+              name="lastName"
+              handleChange={handleChange}
+              placeholder="Last Name"
+              value={formData.lastName}
+              inputClass={`${styles["login-page__input"]}`}
+              isRequired={true}
+              errorStyle={styles.error}
+              rule={(value: string) => value !== undefined && value === ""}
+              errorMessage="Last Name cannot be empty"
+              errorMessageStyle={styles.error__message}
+            />
+            <FormItem
+              id="email"
+              name="email"
+              handleChange={handleChange}
+              placeholder="Email Address"
+              value={formData.email}
+              inputClass={`${styles["login-page__input"]}`}
+              isRequired={true}
+              errorStyle={styles.error}
+              rule={(value: string) => value !== undefined && value === ""}
+              errorMessage="Looks like this is not an email"
+              errorMessageStyle={styles.error__message}
+            />
+            <FormItem
+              id="password"
+              name="password"
+              handleChange={handleChange}
+              placeholder="First Name"
+              value={formData.password}
+              inputClass={`${styles["login-page__input"]}`}
+              isRequired={true}
+              errorStyle={styles.error}
+              rule={(value: string) => value !== undefined && value === ""}
+              errorMessage="Password cannot be empty"
+              errorMessageStyle={styles.error__message}
+            />
             <button type="submit">CLAIM YOUR FREE TRIAL</button>
-            <p>
+            <p className={styles["login-page__statement"]}>
               By clicking the button, you are agreeing to our{" "}
               <a href="#">Terms and Services</a>
             </p>

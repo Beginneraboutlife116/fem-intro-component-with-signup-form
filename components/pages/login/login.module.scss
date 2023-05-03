@@ -30,16 +30,6 @@
         outline: 1px solid rgba(#65ac87, 1);
       }
     }
-
-    & p {
-      font-size: 0.75rem;
-      color: map-get($map: $colors, $key: neutral-700);
-    }
-
-    & a {
-      font-weight: $fw-700;
-      color: map-get($map: $colors, $key: primary-red);
-    }
   }
 
   &__input {
@@ -59,6 +49,16 @@
       border: none;
     }
   }
+
+  &__statement {
+    font-size: 0.75rem;
+    color: map-get($map: $colors, $key: neutral-700);
+
+    & a {
+      font-weight: $fw-700;
+      color: map-get($map: $colors, $key: primary-red);
+    }
+  }
 }
 
 .error {
@@ -67,6 +67,15 @@
 
   &::placeholder {
     color: map-get($map: $colors, $key: primary-red);
+  }
+
+  &__message {
+    position: absolute;
+    font-size: 0.75rem;
+    color: map-get($map: $colors, $key: primary-red);
+    right: 0;
+    top: 100%;
+    font-style: italic;
   }
 }
 
