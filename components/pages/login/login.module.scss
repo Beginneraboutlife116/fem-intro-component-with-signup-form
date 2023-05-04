@@ -4,6 +4,30 @@
   min-height: 100dvh;
   background-image: url("../../../public/images/bg-intro-mobile.png");
   background-color: map-get($map: $colors, $key: primary-red);
+  padding-block-start: 6rem;
+
+  @media (width >= 70rem) {
+    padding: 0;
+    background-image: url("../../../public/images/bg-intro-desktop.png");
+    display: grid;
+    place-content: center;
+  }
+
+  &__description {
+    padding-inline: 1rem;
+
+    @media (width >= 70rem) {
+      display: grid;
+      align-content: center;
+      text-align: left;
+      padding-inline: 0;
+
+      & h1 {
+        font-size: 3rem;
+        line-height: 1.1;
+      }
+    }
+  }
 
   &__banner {
     background-color: map-get($map: $colors, $key: accent);
@@ -15,7 +39,7 @@
     padding: 1.5rem;
     background-color: white;
     display: grid;
-    gap: 1.25rem;
+    gap: clamp(1.25rem, calc(-0.5rem + 2.5vw), 1.75rem);
 
     & button {
       background-color: map-get($map: $colors, $key: primary-green);
@@ -29,6 +53,14 @@
       &:where(:focus, :focus-visible, :focus-within) {
         outline: 1px solid rgba(#65ac87, 1);
       }
+
+      &:disabled {
+        background-color: map-get($map: $colors, $key: secondary-green);
+      }
+    }
+
+    @media (width >= 70rem) {
+      padding-block-end: 3rem;
     }
   }
 
@@ -59,6 +91,18 @@
       color: map-get($map: $colors, $key: primary-red);
     }
   }
+
+  &__wrapper {
+    width: min(100%, 30rem);
+    margin-inline: auto;
+
+    @media (width >= 70rem) {
+      width: 80%;
+      display: grid;
+      gap: clamp(1rem, calc(-2.5rem + 5vw), 2rem);
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 }
 
 .error {
@@ -72,9 +116,10 @@
   &__message {
     position: absolute;
     font-size: 0.75rem;
+    font-weight: 500;
     color: map-get($map: $colors, $key: primary-red);
     right: 0;
-    top: 100%;
+    top: calc(100% + .25em);
     font-style: italic;
   }
 }
