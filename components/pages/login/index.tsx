@@ -65,6 +65,7 @@ const LoginPage = () => {
                 inputClass={`${styles["login-page__input"]}`}
                 isRequired={true}
                 errorStyle={styles.error}
+                successStyle={styles.success}
                 rule={determineEmptyString}
                 errorMessage="First Name cannot be empty"
                 errorMessageStyle={styles.error__message}

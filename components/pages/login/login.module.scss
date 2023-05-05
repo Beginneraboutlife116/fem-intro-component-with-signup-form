@@ -128,6 +128,10 @@
   }
 }
 
+.success {
+  outline-color: map-get($map: $colors, $key: primary-green);
+}
+
 @supports (min-height: 100dvh) {
   .login-page {
     min-height: 100vh;
