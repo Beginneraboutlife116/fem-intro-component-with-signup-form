@@ -7,4 +7,8 @@ const determineValidateEmail: (value: string) => boolean = (value) => {
   return value !== undefined && !pattern.test(value)
 }
 
-export { determineEmptyString, determineInputExceedsLimit, determineValidateEmail }
+export {
+  determineEmptyString,
+  determineInputExceedsLimit,
+  determineValidateEmail
+}

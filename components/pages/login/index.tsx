@@ -4,17 +4,17 @@ import styles from "./login.module.scss"
 import FormItem from "../../formItem"
 
 type formData = {
-  firstName: string | undefined
-  lastName: string | undefined
-  email: string | undefined
-  password: string | undefined
+  firstName: string
+  lastName: string
+  email: string
+  password: string
 }
 
 const initialFormData: formData = {
-  firstName: undefined,
-  lastName: undefined,
-  email: undefined,
-  password: undefined
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: ""
 }
 
 const LoginPage = () => {
@@ -99,7 +99,7 @@ const LoginPage = () => {
                 id="password"
                 name="password"
                 handleChange={handleChange}
-                placeholder="First Name"
+                placeholder="Password"
                 value={formData.password}
                 inputClass={`${styles["login-page__input"]}`}
                 isRequired={true}

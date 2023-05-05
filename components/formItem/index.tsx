@@ -1,4 +1,4 @@
-import React from "react"
+import React, { ChangeEvent, useState } from "react"
 import Image from "next/image"
 import { FormItem } from "./formItem"
 import styles from "./formItem.module.scss"
@@ -19,7 +19,8 @@ const FormItem = ({
   errorMessageStyle = "",
   title
 }: FormItem) => {
-  let error
+  const [isTyping, setIsTyping] = useState(false)
+  let error = false
 
   if (rule) {
     error = rule(value)
@@ -34,6 +35,11 @@ const FormItem = ({
       errorMessage
     )
 
+  const handleTyping = (event: ChangeEvent<HTMLInputElement>) => {
+    setIsTyping(true)
+    handleChange(event)
+  }
+
   return (
     <label className={labelClass} style={{ position: "relative" }}>
       {titleElement}
@@ -41,14 +47,14 @@ const FormItem = ({
         type={type}
         placeholder={placeholder}
         value={value}
-        onChange={handleChange}
+        onChange={handleTyping}
         id={id}
-        className={`${inputClass} ${error ? errorStyle : ""}`.trim()}
+        className={`${inputClass} ${isTyping && error ? errorStyle : ""}`.trim()}
         name={name}
         required={isRequired}
       />
-      {error && errorMessageElement}
-      {error && (
+      {isTyping && error && errorMessageElement}
+      {isTyping && error && (
         <Image
           className={styles.icon}
           src="/images/icon-error.svg"
