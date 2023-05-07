@@ -17,7 +17,7 @@ const initialFormData: formData = {
   password: ""
 }
 
-const LoginPage = () => {
+const Login = () => {
   const [formData, setFormData] = useState(initialFormData)
   const [disabled, setDisabled] = useState(false)
 
@@ -29,9 +29,28 @@ const LoginPage = () => {
     })
   }
 
-  const handleSubmit: FormEventHandler = (e) => {
-    // TODO: set button disabled when user delete `require` in HTML intentionally
+  const handleSubmit: FormEventHandler = async (e) => {
     e.preventDefault()
+    try {
+      setDisabled(true)
+      const response = await fetch("./api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      })
+      if (response.ok && response.status === 200) {
+        const data = await response.json()
+        console.log(data)
+      } else {
+        throw new Error("Something wrong from response")
+      }
+    } catch (error) {
+      throw new Error("Something wrong from server")
+    } finally {
+      setDisabled(false)
+    }
   }
 
   return (
@@ -79,6 +98,7 @@ const LoginPage = () => {
                 inputClass={`${styles["login-page__input"]}`}
                 isRequired={true}
                 errorStyle={styles.error}
+                successStyle={styles.success}
                 rule={determineEmptyString}
                 errorMessage="Last Name cannot be empty"
                 errorMessageStyle={styles.error__message}
@@ -92,6 +112,7 @@ const LoginPage = () => {
                 inputClass={`${styles["login-page__input"]}`}
                 isRequired={true}
                 errorStyle={styles.error}
+                successStyle={styles.success}
                 rule={determineValidateEmail}
                 errorMessage="Looks like this is not an email"
                 errorMessageStyle={styles.error__message}
@@ -99,12 +120,14 @@ const LoginPage = () => {
               <FormItem
                 id="password"
                 name="password"
+                type="password"
                 handleChange={handleChange}
                 placeholder="Password"
                 value={formData.password}
                 inputClass={`${styles["login-page__input"]}`}
                 isRequired={true}
                 errorStyle={styles.error}
+                successStyle={styles.success}
                 rule={determineEmptyString}
                 errorMessage="Password cannot be empty"
                 errorMessageStyle={styles.error__message}
@@ -124,4 +147,4 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage
+export default Login

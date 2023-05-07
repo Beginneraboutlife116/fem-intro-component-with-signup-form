@@ -5,6 +5,7 @@ body {
   text-align: center;
   line-height: 1.5;
   font-family: "Poppins", sans-serif;
+  background-color: map-get($map: $colors, $key: primary-red);
 }
 
 input {
