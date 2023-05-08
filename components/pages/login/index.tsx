@@ -28,11 +28,17 @@ const Login = () => {
       [name]: value
     })
   }
-
+  
+  
   const handleSubmit: FormEventHandler = async (e) => {
     e.preventDefault()
+    setDisabled(true)
+    if (Object.values(formData).some((value) => value === "")) {
+      console.error("Some unexpected behavior happened.")
+      setDisabled(false)
+      return
+    }
     try {
-      setDisabled(true)
       const response = await fetch("./api/login", {
         method: "POST",
         headers: {

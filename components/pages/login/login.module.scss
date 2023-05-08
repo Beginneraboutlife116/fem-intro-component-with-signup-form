@@ -58,8 +58,12 @@
         outline: 1px solid rgba(#65ac87, 1);
       }
 
-      &:disabled {
+      &:where(:disabled, :hover) {
         background-color: map-get($map: $colors, $key: secondary-green);
+      }
+
+      &:disabled {
+        cursor: not-allowed;
       }
     }
 
