@@ -1,3 +1,4 @@
+import Head from "next/head"
 import { useState, FormEventHandler, ChangeEventHandler } from "react"
 import { determineEmptyString, determineValidateEmail } from "../../utilities"
 import styles from "./login.module.scss"
@@ -28,8 +29,7 @@ const Login = () => {
       [name]: value
     })
   }
-  
-  
+
   const handleSubmit: FormEventHandler = async (e) => {
     e.preventDefault()
     setDisabled(true)
@@ -61,6 +61,12 @@ const Login = () => {
 
   return (
     <div className={`pi-4 pbe-6 ${styles["login-page"]}`}>
+      <Head>
+        <title>FEM-intro component with sign-up form</title>
+        <meta name="description" content="intro component with sign-up form" />
+        <link rel="icon" href="/favicon-32x32.png" />
+      </Head>
+
       <div className={styles["login-page__wrapper"]}>
         <section className={`mbe-6 ${styles["login-page__description"]}`}>
           <h1 className="mbe-3">Learn to code by watching others</h1>
