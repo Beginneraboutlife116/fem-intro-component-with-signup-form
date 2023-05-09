@@ -8,7 +8,29 @@ import Image from "next/image"
 import styles from "./formItem.module.scss"
 
 interface FormItem {
-  type?: "text" | "email" | "number" | "password"
+  type?:
+    | "text"
+    | "email"
+    | "number"
+    | "password"
+    | "button"
+    | "checkbox"
+    | "color"
+    | "date"
+    | "datetime-local"
+    | "file"
+    | "hidden"
+    | "image"
+    | "month"
+    | "radio"
+    | "range"
+    | "reset"
+    | "search"
+    | "submit"
+    | "tel"
+    | "time"
+    | "url"
+    | "week"
   title?: string | ReactElement
   placeholder?: string
   id?: string
