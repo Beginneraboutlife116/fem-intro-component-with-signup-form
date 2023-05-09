@@ -1,7 +1,7 @@
 import Head from "next/head"
 import { useState, FormEventHandler, ChangeEventHandler } from "react"
 import { determineEmptyString, determineValidateEmail } from "../../utilities"
-import styles from "./login.module.scss"
+import styles from "./signup.module.scss"
 import FormItem from "../../formItem"
 
 type formData = {
@@ -18,7 +18,7 @@ const initialFormData: formData = {
   password: ""
 }
 
-const Login = () => {
+const Signup = () => {
   const [formData, setFormData] = useState(initialFormData)
   const [disabled, setDisabled] = useState(false)
 
@@ -39,7 +39,7 @@ const Login = () => {
       return
     }
     try {
-      const response = await fetch("./api/login", {
+      const response = await fetch("./api/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -60,15 +60,15 @@ const Login = () => {
   }
 
   return (
-    <div className={`pi-4 pbe-6 ${styles["login-page"]}`}>
+    <div className={`pi-4 pbe-6 ${styles["signup-page"]}`}>
       <Head>
-        <title>FEM-intro component with sign-up form</title>
+        <title>Sign-up form</title>
         <meta name="description" content="intro component with sign-up form" />
         <link rel="icon" href="/favicon-32x32.png" />
       </Head>
 
-      <div className={styles["login-page__wrapper"]}>
-        <section className={`mbe-6 ${styles["login-page__description"]}`}>
+      <div className={styles["signup-page__wrapper"]}>
+        <section className={`mbe-6 ${styles["signup-page__description"]}`}>
           <h1 className="mbe-3">Learn to code by watching others</h1>
           <p className="line-height">
             See how experienced developers solve problems in real-time Watching
@@ -78,7 +78,7 @@ const Login = () => {
         </section>
         <main>
           <div
-            className={`radius shadow mbe-3 ${styles["login-page__banner"]}`}>
+            className={`radius shadow mbe-3 ${styles["signup-page__banner"]}`}>
             <p>
               <em>Try it free 7 days</em> then $20/mo. thereafter
             </p>
@@ -86,14 +86,14 @@ const Login = () => {
           <div>
             <form
               onSubmit={handleSubmit}
-              className={`radius shadow ${styles["login-page__form"]}`}>
+              className={`radius shadow ${styles["signup-page__form"]}`}>
               <FormItem
                 id="firstName"
                 name="firstName"
                 handleChange={handleChange}
                 placeholder="First Name"
                 value={formData.firstName}
-                inputClass={`${styles["login-page__input"]}`}
+                inputClass={`${styles["signup-page__input"]}`}
                 isRequired={true}
                 errorStyle={styles.error}
                 successStyle={styles.success}
@@ -107,7 +107,7 @@ const Login = () => {
                 handleChange={handleChange}
                 placeholder="Last Name"
                 value={formData.lastName}
-                inputClass={`${styles["login-page__input"]}`}
+                inputClass={`${styles["signup-page__input"]}`}
                 isRequired={true}
                 errorStyle={styles.error}
                 successStyle={styles.success}
@@ -121,7 +121,7 @@ const Login = () => {
                 handleChange={handleChange}
                 placeholder="Email Address"
                 value={formData.email}
-                inputClass={`${styles["login-page__input"]}`}
+                inputClass={`${styles["signup-page__input"]}`}
                 isRequired={true}
                 errorStyle={styles.error}
                 successStyle={styles.success}
@@ -136,7 +136,7 @@ const Login = () => {
                 handleChange={handleChange}
                 placeholder="Password"
                 value={formData.password}
-                inputClass={`${styles["login-page__input"]}`}
+                inputClass={`${styles["signup-page__input"]}`}
                 isRequired={true}
                 errorStyle={styles.error}
                 successStyle={styles.success}
@@ -147,7 +147,7 @@ const Login = () => {
               <button type="submit" disabled={disabled}>
                 CLAIM YOUR FREE TRIAL
               </button>
-              <p className={styles["login-page__statement"]}>
+              <p className={styles["signup-page__statement"]}>
                 By clicking the button, you are agreeing to our{" "}
                 <a href="#">Terms and Services</a>
               </p>
@@ -159,4 +159,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Signup

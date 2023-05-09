@@ -1,6 +1,6 @@
 @use "/styles/variables" as *;
 
-.login-page {
+.signup-page {
   min-height: 100dvh;
   background-image: url("../../../public/images/bg-intro-mobile.png");
   background-color: map-get($map: $colors, $key: primary-red);

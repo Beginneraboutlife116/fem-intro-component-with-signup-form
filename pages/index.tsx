@@ -10,7 +10,7 @@ export default function Home() {
         <link rel="icon" href="/favicon-32x32.png" />
       </Head>
 
-      <Link href="/login">Go to login page</Link>
+      <Link href="/signup">Go to sign up page</Link>
     </div>
   )
 }
