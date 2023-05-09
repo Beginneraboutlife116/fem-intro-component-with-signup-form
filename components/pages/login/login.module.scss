@@ -84,7 +84,7 @@
       color: rgba(map-get($map: $colors, $key: neutral-400), 0.65);
     }
 
-    &:where(:focus-visible, :focus, :focus-within) {
+    &:where(:focus-visible, :focus, :focus-within, :hover) {
       outline: 2px solid map-get($map: $colors, $key: accent);
       border: none;
     }
