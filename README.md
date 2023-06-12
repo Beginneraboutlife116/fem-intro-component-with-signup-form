@@ -1,6 +1,6 @@
-# Frontend Mentor - Intro component with sign up form solution
+# Frontend Mentor - Intro component with sign-up form solution
 
-This is a solution to the [Intro component with sign up form challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/intro-component-with-signup-form-5cf91bd49edda32581d28fd1). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+This is a solution to the [Intro component with sign-up form challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/intro-component-with-signup-form-5cf91bd49edda32581d28fd1). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents
 
@@ -51,20 +51,26 @@ Users should be able to:
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
 - [Next.js](https://nextjs.org/) - React framework
+- [React Hook Form](https://www.react-hook-form.com/)
 
 ### What I learned
 
 I tried to build input components.
-The most confuse point for me in this challenge was how I get the form data. Should I get that from `useState` or from `useRef`, which is via DOM. At the end, I got the form data from `useState`. I thought that it obeys the controlled components concept from React.
+The most confusing point for me in this challenge was how I get the form data. Should I get that from `useState` or from `useRef`, which is via the DOM? In the end, I got the form data from `useState`. I thought that it obeys the controlled components concept from React. Make the parents control these inputs' value and state.
+
+Also, I try to challenge myself by importing React Hook Form. It's a popular library for form.
+Because I built input components and it's controlled, I need to use `Controller` API to wrap my controlled components and use `useForm` at the sign-up page to get the form data.
+It's quite easy to use this library with controlled components.
 
 ### Continued development
 
-I would like to write a notification component which could help user know whether their submit is well or not. The prototype may refer to Sweetalert library.
+I would like to write a notification component that could help users know whether their submission is well or not. The prototype may refer to Sweetalert library.
 
 ### Useful resources
 
 - [ReactJS](https://react.dev/) - This helps me learn how to write React.
 - [NextJS](https://nextjs.org/) - This helps me learn how to use NextJs framework.
+- [React Hook Form](https://www.react-hook-form.com/) - This helps me learn how to use this library.
 
 ## Author
 
