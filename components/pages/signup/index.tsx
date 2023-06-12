@@ -1,17 +1,17 @@
 import Head from "next/head"
-import { useState, FormEventHandler, ChangeEventHandler } from "react"
+import { Controller, useForm, SubmitHandler } from "react-hook-form"
 import { determineEmptyString, determineValidateEmail } from "../../utilities"
 import styles from "./signup.module.scss"
 import FormItem from "../../formItem"
 
-type formData = {
+type FormValues = {
   firstName: string
   lastName: string
   email: string
   password: string
 }
 
-const initialFormData: formData = {
+const initialFormData: FormValues = {
   firstName: "",
   lastName: "",
   email: "",
@@ -19,23 +19,15 @@ const initialFormData: formData = {
 }
 
 const Signup = () => {
-  const [formData, setFormData] = useState(initialFormData)
-  const [disabled, setDisabled] = useState(false)
+  const {
+    control,
+    handleSubmit,
+    formState: { isValid, isSubmitting }
+  } = useForm<FormValues>({ defaultValues: initialFormData })
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const { name, value } = event.target
-    setFormData({
-      ...formData,
-      [name]: value
-    })
-  }
-
-  const handleSubmit: FormEventHandler = async (e) => {
-    e.preventDefault()
-    setDisabled(true)
-    if (Object.values(formData).some((value) => value === "")) {
+  const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
+    if (Object.values(data).some((value) => value === "")) {
       console.error("Some unexpected behavior happened.")
-      setDisabled(false)
       return
     }
     try {
@@ -44,18 +36,16 @@ const Signup = () => {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(data)
       })
       if (response.ok && response.status === 200) {
         const data = await response.json()
-        console.log(data)
+        console.log("return data: ", data)
       } else {
         throw new Error("Something wrong from response")
       }
     } catch (error) {
       throw new Error("Something wrong from server")
-    } finally {
-      setDisabled(false)
     }
   }
 
@@ -85,66 +75,99 @@ const Signup = () => {
           </div>
           <div>
             <form
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmit(onSubmit)}
               className={`radius shadow ${styles["signup-page__form"]}`}>
-              <FormItem
-                id="firstName"
+              <Controller
+                control={control}
                 name="firstName"
-                handleChange={handleChange}
-                placeholder="First Name"
-                value={formData.firstName}
-                inputClass={`${styles["signup-page__input"]}`}
-                isRequired={true}
-                errorStyle={styles.error}
-                successStyle={styles.success}
-                rule={determineEmptyString}
-                errorMessage="First Name cannot be empty"
-                errorMessageStyle={styles.error__message}
+                rules={{ required: true }}
+                render={({
+                  field: { onChange, value },
+                  formState: { errors }
+                }) => (
+                  <FormItem
+                    id="firstName"
+                    name="firstName"
+                    handleChange={onChange}
+                    placeholder="First Name"
+                    value={value}
+                    inputClass={`${styles["signup-page__input"]}`}
+                    errorStyle={styles.error}
+                    isRequired={true}
+                    successStyle={styles.success}
+                    rule={determineEmptyString}
+                    errorMessage="First Name cannot be empty"
+                    errorMessageStyle={styles.error__message}
+                  />
+                )}
               />
-              <FormItem
-                id="lastName"
+              <Controller
+                control={control}
                 name="lastName"
-                handleChange={handleChange}
-                placeholder="Last Name"
-                value={formData.lastName}
-                inputClass={`${styles["signup-page__input"]}`}
-                isRequired={true}
-                errorStyle={styles.error}
-                successStyle={styles.success}
-                rule={determineEmptyString}
-                errorMessage="Last Name cannot be empty"
-                errorMessageStyle={styles.error__message}
+                rules={{ required: true }}
+                render={({ field: { onChange, value } }) => (
+                  <FormItem
+                    id="lastName"
+                    name="lastName"
+                    handleChange={onChange}
+                    placeholder="Last Name"
+                    value={value}
+                    inputClass={`${styles["signup-page__input"]}`}
+                    isRequired={true}
+                    errorStyle={styles.error}
+                    successStyle={styles.success}
+                    rule={determineEmptyString}
+                    errorMessage="Last Name cannot be empty"
+                    errorMessageStyle={styles.error__message}
+                  />
+                )}
               />
-              <FormItem
-                id="email"
+              <Controller
+                control={control}
                 name="email"
-                handleChange={handleChange}
-                placeholder="Email Address"
-                value={formData.email}
-                inputClass={`${styles["signup-page__input"]}`}
-                isRequired={true}
-                errorStyle={styles.error}
-                successStyle={styles.success}
-                rule={determineValidateEmail}
-                errorMessage="Looks like this is not an email"
-                errorMessageStyle={styles.error__message}
+                rules={{ required: true }}
+                render={({ field: { onChange, value } }) => (
+                  <FormItem
+                    id="email"
+                    name="email"
+                    handleChange={onChange}
+                    placeholder="Email Address"
+                    value={value}
+                    inputClass={`${styles["signup-page__input"]}`}
+                    isRequired={true}
+                    errorStyle={styles.error}
+                    successStyle={styles.success}
+                    rule={determineValidateEmail}
+                    errorMessage="Looks like this is not an email"
+                    errorMessageStyle={styles.error__message}
+                  />
+                )}
               />
-              <FormItem
-                id="password"
+              <Controller
+                control={control}
                 name="password"
-                type="password"
-                handleChange={handleChange}
-                placeholder="Password"
-                value={formData.password}
-                inputClass={`${styles["signup-page__input"]}`}
-                isRequired={true}
-                errorStyle={styles.error}
-                successStyle={styles.success}
-                rule={determineEmptyString}
-                errorMessage="Password cannot be empty"
-                errorMessageStyle={styles.error__message}
+                rules={{ required: true }}
+                render={({ field: { onChange, value } }) => (
+                  <FormItem
+                    id="password"
+                    name="password"
+                    type="password"
+                    handleChange={onChange}
+                    placeholder="Password"
+                    value={value}
+                    inputClass={`${styles["signup-page__input"]}`}
+                    isRequired={true}
+                    errorStyle={styles.error}
+                    successStyle={styles.success}
+                    rule={determineEmptyString}
+                    errorMessage="Password cannot be empty"
+                    errorMessageStyle={styles.error__message}
+                  />
+                )}
               />
-              <button type="submit" disabled={disabled}>
+              <button
+                type="submit"
+                disabled={isValid ? (isSubmitting ? true : false) : true}>
                 CLAIM YOUR FREE TRIAL
               </button>
               <p className={styles["signup-page__statement"]}>
